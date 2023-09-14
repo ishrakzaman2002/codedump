@@ -1,0 +1,30 @@
+class Equation:
+    def monomial_solver(self):
+        a=int(input("Enter the value of a: "))
+        b=int(input("Enter the value of b: "))
+        c=int(input("Enter the value of c: "))
+
+        if a==1:
+            print(f"The equation is x - {2*b} = {c}")
+        else:
+            print(f"The equation is {a}x - {2*b} = {c}")
+
+
+        x=(c+2*b)/a
+        print(f"The solution for x is x = {x}")
+
+    def polynomial_solver(self):
+        a = int(input("Enter the value of a: "))
+        b = int(input("Enter the value of b: "))
+        c = int(input("Enter the value of c: "))
+        if a==1:
+            print(f"The equation is √(x + {2*b}) = {c}")
+        else:
+            print(f"The equation is √({a}x + {2*b}) = {c}")
+        x=(c**2-2*b)/a
+        print(f"The solution for x is x = {x}")
+
+solver=Equation()
+solver.monomial_solver()
+solver.polynomial_solver()
+
