@@ -1,0 +1,49 @@
+class Hw1Q1:
+    def timeConvert(self,input_second):
+        #Converting to number of days, hours, minutes, and seconds
+            ndays=input_second//(24*60*60)
+            nhours=(input_second%(24*60*60))//(60*60)
+            nminutes=(input_second%(60*60))//60
+            nseconds=input_second%60
+
+            final_answer = ""
+            if ndays > 0:
+                if ndays==1:
+                    final_answer+=f"{ndays} day, "
+                else:
+                    final_answer+=f"{ndays} days, "
+
+            if nhours > 0:
+                if nhours==1:
+                    final_answer+=f"{nhours} hour, "
+                else:
+                    final_answer += f"{nhours} hours, "
+
+            if nminutes > 0:
+                if nminutes==1:
+                    final_answer+=f"{nminutes} minute, "
+                else:
+                    final_answer+=f"{nminutes} minutes, "
+
+            if nseconds > 0:
+                if nseconds==1:
+                    final_answer+=f"{nseconds} second"
+                else:
+                    final_answer+=f"{nseconds} seconds"
+
+
+            return final_answer
+
+#TO TEST
+# input_second=100
+# conversion = Hw1Q1()
+# final_answer = conversion.timeConvert(input_second)
+# print(final_answer)
+
+input_second=int(input("Please enter number of seconds you want to convert"))
+conversion = Hw1Q1()
+final_answer = conversion.timeConvert(input_second)
+print(final_answer)
+
+
+
