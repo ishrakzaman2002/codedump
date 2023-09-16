@@ -4,19 +4,33 @@ class Equation:
         b=int(input("Enter the value of b: "))
         c=int(input("Enter the value of c: "))
 
+        while a==0:
+            print("Enter a value of a that is not zero")
+            a = int(input("Enter the value of a: "))
+
         if a==1:
             print(f"The equation is x - {2*b} = {c}")
+            x = (c+2*b)/a
+            print(f"The solution for x is x = {x}")
+        elif a==-1:
+            print(f"The equation is -x - {2*b} = {c}")
+            x = (c+2*b)/a
+            print(f"The solution for x is x = {x}")
         else:
+            x=(c+2*b)/a
             print(f"The equation is {a}x - {2*b} = {c}")
 
 
-        x=(c+2*b)/a
-        print(f"The solution for x is x = {x}")
+
 
     def polynomial_solver(self):
         a = int(input("Enter the value of a: "))
         b = int(input("Enter the value of b: "))
         c = int(input("Enter the value of c: "))
+
+        while a==0:
+            print("Enter a value that is not zero")
+            a=int(input("Enter a non-zero value of a"))
         if a==1:
             print(f"The equation is √(x + {2*b}) = {c}")
         else:
