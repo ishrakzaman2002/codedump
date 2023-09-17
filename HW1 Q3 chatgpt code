@@ -1,59 +1,67 @@
-"""tictactoe game for 2 players"""
+# Initialize the choices list
 choices = []
-for x in range (1, 9) :
-    choices.append(str(x))
 
+# Initialize playerOneTurn to True
 playerOneTurn = True
+
+# Initialize winner to False
 winner = False
 
+# Populate the choices list with empty spaces
+for x in range(1, 10):
+    choices.append(str(x))
 
-def printBoard() :
-    print( '\n -----')
-    print( '|' + choices[0] + '|' + choices[1] + '|' + choices[2] + '|')
-    print( ' -----')
-    print( '|' + choices[3] + '|' + choices[4] + '|' + choices[5] + '|')
-    print( ' -----')
-    print( '|' + choices[6] + '|' + choices[7] + '|' + choices[8] + '|')
-    print( ' -----\n')
+# Define a function to print the game board
+def printBoard():
+    print('\n -----')
+    print('|' + choices[0] + '|' + choices[1] + '|' + choices[2] + '|')
+    print(' -----')
+    print('|' + choices[3] + '|' + choices[4] + '|' + choices[5] + '|')
+    print(' -----')
+    print('|' + choices[6] + '|' + choices[7] + '|' + choices[8] + '|')
+    print(' -----\n')
 
+# Main game loop
+while not winner:
 
-while winner :
+    # Print the current game board
     printBoard()
 
-    if playerOneTurn :
-        print( "Player 1:")
-    else :
-        print( "Player 2:")
+    if playerOneTurn:
+        print("Player 1:")
+        marker = 'X'
+    else:
+        print("Player 2:")
+        marker = 'O'
 
     try:
         choice = int(input(">> "))
-    except:
-        print("please enter a valid field")
+    except ValueError:
+        print("Please enter a valid field (1-9)")
         continue
 
-    if choices[choice - 1] == 'X' or choices [choice] == 'O':
-        print("illegal move, please try again")
+    if choice < 1 or choice > 9:
+        print("Please enter a valid field (1-9)")
         continue
 
-    if playerOneTurn :
-        choices[choice - 1] = 'X'
-    else :
-        choices[choice - 1] = 'O'
+    if choices[choice - 1] == 'X' or choices[choice - 1] == 'O':
+        print("Illegal move, please try again")
+        continue
+
+    choices[choice - 1] = marker
 
     playerOneTurn = not playerOneTurn
 
-    for x in range (0, 3) :
+    # Check for a win condition
+    for x in range(0, 3):
         y = x * 3
-        if (choices[y] == choices[(y + 1)] and choices[y] == choices[(y + 2)]) :
+        if (choices[y] == choices[y + 1] and choices[y] == choices[y + 2]) or \
+           (choices[x] == choices[x + 3] and choices[x] == choices[x + 6]) or \
+           (choices[0] == choices[4] and choices[0] == choices[8]) or \
+           (choices[2] == choices[4] and choices[2] == choices[6]):
             winner = True
             printBoard()
-        if (choices[x] == choices[(x + 3)] and choices[x] == choices[(x + 6)]) :
-            winner = True
-            printBoard()
+            break
 
-    if((choices[0] == choices[4] and choices[0] == choices[8]) or
-       (choices[2] == choices[4] and choices[4] == choices[6])) :
-        winner = True
-        printBoard()
-
-print ("Player " + str(int(playerOneTurn + 1)) + " wins!\n")
+# Print the winner
+print("Player " + str(int(playerOneTurn) + 1) + " wins!\n")
